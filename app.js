@@ -1,8 +1,10 @@
 const express = require('express')
 const products_routes = require('./routes/products.js')
+const slugify = require('slugify');
 
 //Server instantiation
 const app = express()
+
 
 //Server configuration: template engine
 app.set('views', './views');
@@ -15,7 +17,10 @@ app.use('/', products_routes)
 
 //Server startup
 app.listen(5000, () => {
-    console.log('server is listening on port 5000')
+    const welcomeMessage = "server is listening on port 5000";
+    const slugifiedMessage = slugify(welcomeMessage, { replacement: '*', lower: false });
+    console.log(slugifiedMessage);
 })
+
 
 
